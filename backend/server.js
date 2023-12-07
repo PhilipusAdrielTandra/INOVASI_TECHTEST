@@ -54,10 +54,10 @@ app.post('/createtransactions', (req, res) => {
 
 app.put('/updatetransaction/:id', (req, res) => {
     const id = req.params.id;
-    const { productID, productName, amount, customerName, status, transactionDate, createBy, createOn } = req.body;
+    const { productID, productName, amount, customerName, status, createBy } = req.body;
 
-    const q = "UPDATE transactions SET productID=?, productName=?, amount=?, customerName=?, status=?, transactionDate=?, createBy=?, createOn=? WHERE id=?";
-    db.query(q, [productID, productName, amount, customerName, status, transactionDate, createBy, createOn, id], (err, result) => {
+    const q = "UPDATE transactions SET productID=?, productName=?, amount=?, customerName=?, status=?, createBy=? WHERE id=?";
+    db.query(q, [productID, productName, amount, customerName, status, createBy, id], (err, result) => {
         if (err) {
             console.log(err);
             return res.json(err);
